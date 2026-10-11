@@ -1,0 +1,16 @@
+[package]
+name        = "scu"
+description = "System Composition Utility (SCU): provider-agnostic infrastructure composition."
+version.workspace      = true
+edition.workspace      = true
+rust-version.workspace = true
+authors.workspace      = true
+license.workspace      = true
+repository.workspace   = true
+homepage.workspace     = true
+readme.workspace       = true
+keywords.workspace     = true
+categories.workspace   = true
+
+[lints]
+workspace = true
