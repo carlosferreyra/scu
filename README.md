@@ -14,6 +14,27 @@ See [WASI P3 development](docs/wasm.md) for the layout and pinned toolchain.
 `AGENTS.md` guides coding agents through the workspace CLI, scaffolding, and
 verification commands. It is included in every generated project.
 
+## Project CLI skeleton
+
+```sh
+cargo run -p scu-cli -- init my-app --local-tool wasmtime --provider aws --non-interactive
+cargo run -p scu-cli -- check
+cargo run -p scu-cli -- plan --prod
+cargo run -p scu-cli -- up --dev
+cargo run -p scu-cli -- up --prod
+cargo run -p scu-cli -- down --dev
+cargo run -p scu-cli -- status --prod --config custom.toml
+cargo run -p scu-cli -- --help
+```
+
+These six project commands currently print placeholder messages. They do not
+create files, load configuration, validate SDK code, or provision resources.
+Dev is the default; `--dev` and `--prod` are mutually exclusive. `--config`
+defaults to `scu.toml`. `init` accepts repeated local-tool/provider selections.
+Tool and provider names are illustrative, not implemented integrations.
+See the [implementation plan](docs/implementation-plan.md) for the SDK,
+configuration, local lifecycle, and Pulumi delivery sequence.
+
 ## Develop
 
 ```sh
