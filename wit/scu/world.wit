@@ -1,0 +1,10 @@
+package scu:runtime@0.1.0;
+
+interface host {
+    echo: async func(value: string) -> string;
+}
+
+world smoke {
+    import host;
+    export run: async func() -> string;
+}

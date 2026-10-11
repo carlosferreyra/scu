@@ -1,5 +1,6 @@
 [workspace]
-members  = ["crates/*", "tools/xtask"]
+members  = ["crates/*", "tools/xtask", "examples/p3-smoke"]
+default-members = ["crates/scu", "crates/scu-cli", "crates/scu-wasi-host", "tools/xtask"]
 resolver = "3"
 
 [workspace.dependencies]
@@ -7,6 +8,12 @@ scu = { path = "crates/scu", version = "0.0.0" }
 cargo_metadata = "0.23.1"
 clap = { version = "4.6.7", features = ["derive"] }
 toml_edit = "0.25.17"
+tokio = { version = "1.53.2", features = ["macros", "rt", "time"] }
+wasmtime = { version = "=49.0.2", default-features = false, features = ["std", "runtime", "cranelift", "component-model-async"] }
+wasmtime-wasi = { version = "=49.0.2", default-features = false, features = ["p3"] }
+wit-bindgen = "=0.62.0"
+wat = "=1.258.3"
+scu-wasi-host = { path = "crates/scu-wasi-host" }
 
 [workspace.package]
 version      = "0.0.0"

@@ -7,6 +7,7 @@ mod scaffold;
 mod tasks;
 mod tooling;
 mod tools;
+mod wasm;
 mod workspace;
 
 use clap::Parser;
@@ -23,6 +24,7 @@ fn run(cli: Cli) -> Result {
         Command::Build => tasks::build(&workspace),
         Command::Ci(args) => tasks::ci(&workspace, args.full),
         Command::Coverage => tasks::coverage(&workspace),
+        Command::Wasm { command } => wasm::run(&workspace, &command),
         Command::Scaffold { command, dry_run } => scaffold::run(&workspace, command, dry_run),
         Command::Doctor => {
             tools::doctor(&workspace);

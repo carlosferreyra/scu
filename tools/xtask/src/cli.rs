@@ -20,6 +20,11 @@ pub(crate) enum Command {
     Ci(CiArgs),
     /// Generate an HTML coverage report.
     Coverage,
+    /// Set up, build, and verify the strict WASI P3 fixture.
+    Wasm {
+        #[command(subcommand)]
+        command: WasmCommand,
+    },
     /// Add an optional project capability.
     Scaffold {
         /// Show planned writes without changing files.
@@ -40,6 +45,20 @@ pub(crate) enum Command {
         #[command(subcommand)]
         command: ReleaseCommand,
     },
+}
+
+#[derive(Debug, Subcommand)]
+pub(crate) enum WasmCommand {
+    /// Install the pinned P3 compiler/target and local wasm-tools.
+    Setup,
+    /// Report whether pinned P3 prerequisites are installed.
+    Doctor,
+    /// Build the P3 fixture and portable SCU library.
+    Build,
+    /// Build, lint, and validate the component and its interfaces.
+    Check,
+    /// Check the component, then execute the host integration tests.
+    Test,
 }
 
 #[derive(Debug, Args)]

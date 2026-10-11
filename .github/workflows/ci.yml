@@ -1,0 +1,33 @@
+# Project workflow: includes the strict P3 lane in addition to native checks.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: rustup self update
+      - uses: moonrepo/setup-rust@v1.3.0
+        with:
+          inherit-toolchain: true
+      - run: cargo xtask ci
+  wasm-p3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: moonrepo/setup-rust@v1.3.0
+        with:
+          inherit-toolchain: true
+      - run: cargo xtask wasm setup
+      - run: cargo xtask wasm test

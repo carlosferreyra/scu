@@ -1,0 +1,21 @@
+[package]
+name = "scu-wasi-host"
+description = "Native Wasmtime host for SCU WASI P3 components."
+publish = false
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+tokio.workspace = true
+wasmtime.workspace = true
+wasmtime-wasi.workspace = true
+
+[dev-dependencies]
+wat.workspace = true

@@ -4,11 +4,12 @@
 
 SCU starts a fresh design for a native Rust infrastructure composition tool.
 The library and CLI will be implemented in Rust, with Python bindings considered
-later. This repository currently contains the initial scaffold.
+later. The workspace now includes a native Wasmtime host, a CLI, and a strict
+WASI P3 component fixture. Infrastructure composition remains to be implemented.
 
-This is a minimal Cargo workspace. It starts with one dependency-free primary
-crate and private repository automation; it does not assume a domain structure
-for you.
+The primary library remains dependency-free. Native runtime dependencies live
+in `scu-wasi-host`, and guest code lives in `examples/p3-smoke`.
+See [WASI P3 development](docs/wasm.md) for the layout and pinned toolchain.
 
 `AGENTS.md` guides coding agents through the workspace CLI, scaffolding, and
 verification commands. It is included in every generated project.
@@ -20,6 +21,12 @@ cargo xtask check
 cargo xtask test
 cargo xtask build
 cargo xtask --help
+```
+
+```sh
+cargo xtask wasm setup
+cargo xtask wasm test
+cargo run -p scu-cli -- run target/p3/wasm32-wasip3/debug/scu_p3_smoke.wasm
 ```
 
 ## Grow the workspace

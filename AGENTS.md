@@ -1,5 +1,16 @@
 # Agent instructions
 
+## WASI P3 boundaries
+
+Read `docs/wasm.md` for the runtime layout. Keep `scu` portable and runtime
+dependencies in `scu-wasi-host`. Build the target-only fixture through
+`cargo xtask wasm build`; do not compile the whole workspace for Wasm.
+Use `cargo xtask wasm setup` only when pinned prerequisites are missing.
+After host, guest, WIT, or toolchain changes, run `cargo xtask wasm test` and
+the appropriate native verification command. Never substitute P2 for the
+configured `wasm32-wasip3` target. Raw native `--workspace` operations require
+`--exclude scu-p3-smoke`; xtask supplies that exclusion automatically.
+
 ## Start with the workspace CLI
 
 Use `cargo xtask` for repository automation and scaffolding. Prefer an existing

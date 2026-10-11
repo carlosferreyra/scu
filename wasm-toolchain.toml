@@ -1,0 +1,8 @@
+# SCU configuration consumed by `cargo xtask wasm`; not a rustup override.
+[p3]
+toolchain = "nightly-2026-10-09"
+target = "wasm32-wasip3"
+package = "scu-p3-smoke"
+
+[tools]
+wasm-tools = "1.261.0"

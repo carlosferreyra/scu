@@ -1,0 +1,25 @@
+[package]
+name = "scu-cli"
+description = "Command-line model for scu."
+publish = false
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+clap = { workspace = true }
+scu-wasi-host.workspace = true
+tokio.workspace = true
+
+[[bin]]
+name = "scu"
+path = "src/main.rs"
+test = false
+doc = false
+harness = false
